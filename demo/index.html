@@ -25,11 +25,11 @@ let demo doc =
       (fun () -> assert false)
   in
   let options = GM.emptyMapOptions() in
-  let lat_lng = jsnew GM.latLng(Js.number_of_float (-34.397), Js.number_of_float 150.644, Js.undefined) in
-  let () = options##center <- lat_lng in
-  let () = options##scrollwheel <- Js._false in
-  let () = options##zoom <- Js.number_of_float 8. in
-  jsnew GM.map(element, options)
+  let lat_lng = new%js GM.latLng (Js.number_of_float (-34.397)) (Js.number_of_float 150.644) Js.undefined in
+  let () = options##.center := lat_lng in
+  let () = options##.scrollwheel := Js._false in
+  let () = options##.zoom := Js.number_of_float 8. in
+  new%js GM.map element options
 {% endhighlight %}
 				</td>
 			</tr>
@@ -40,36 +40,36 @@ let demo doc =
 module GM = GoogleMaps
 
 let demo doc =
-  let styleArray = jsnew Js.array_empty () in
+  let styleArray = new%js Js.array_empty in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "all" in
+  let () = style##.featureType := Js.string "all" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##saturation <- Js.number_of_float (-80.) in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.saturation := Js.number_of_float (-80.) in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set styleArray 0 style in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "road.arterial" in
-  let () = style##elementType <- Js.string "geometry" in
+  let () = style##.featureType := Js.string "road.arterial" in
+  let () = style##.elementType := Js.string "geometry" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##hue <- Js.string "#00ffee" in
-  let () = styler##saturation <- Js.number_of_float (50.) in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.hue := Js.string "#00ffee" in
+  let () = styler##.saturation := Js.number_of_float (50.) in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set styleArray 1 style in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "poi.business" in
-  let () = style##elementType <- Js.string "labels" in
+  let () = style##.featureType := Js.string "poi.business" in
+  let () = style##.elementType := Js.string "labels" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##visibility <- Js.string "off" in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.visibility := Js.string "off" in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set styleArray 2 style in
 
   let element =
@@ -77,12 +77,12 @@ let demo doc =
       (fun () -> assert false)
   in
   let options = GM.emptyMapOptions() in
-  let lat_lng = jsnew GM.latLng(Js.number_of_float (-34.397), Js.number_of_float 150.644, Js.undefined) in
-  let () = options##center <- lat_lng in
-  let () = options##scrollwheel <- Js._false in
-  let () = options##styles <- styleArray in
-  let () = options##zoom <- Js.number_of_float 8. in
-  jsnew GM.map(element, options)
+  let lat_lng = new%js GM.latLng (Js.number_of_float (-34.397)) (Js.number_of_float 150.644) Js.undefined in
+  let () = options##.center := lat_lng in
+  let () = options##.scrollwheel := Js._false in
+  let () = options##.styles := styleArray in
+  let () = options##.zoom := Js.number_of_float 8. in
+  new%js GM.map element options
 {% endhighlight %}
 				</td>
 			</tr>
@@ -98,12 +98,12 @@ let demo doc =
       (fun () -> assert false)
   in
   let options = GM.emptyMapOptions() in
-  let lat_lng = jsnew GM.latLng(Js.number_of_float (-34.397), Js.number_of_float 150.644, Js.undefined) in
-  let () = options##center <- lat_lng in
-  let () = options##scrollwheel <- Js._false in
-  let () = options##zoom <- Js.number_of_float 8. in
-  let () = options##mapTypeId <- GM.mapTypeId##_SATELLITE in
-  jsnew GM.map(element, options)
+  let lat_lng = new%js GM.latLng (Js.number_of_float (-34.397)) (Js.number_of_float 150.644) Js.undefined in
+  let () = options##.center := lat_lng in
+  let () = options##.scrollwheel := Js._false in
+  let () = options##.zoom := Js.number_of_float 8. in
+  let () = options##.mapTypeId := GM.mapTypeId##._SATELLITE in
+  new%js GM.map element options
 {% endhighlight %}
 				</td>
 			</tr>
@@ -118,32 +118,32 @@ let demo doc =
     Js.Opt.get (doc##getElementById(Js.string "demo_directions"))
       (fun () -> assert false)
   in
-  let chicago = jsnew GM.latLng(Js.number_of_float 41.85, Js.number_of_float (-87.65), Js.undefined) in
-  let indianapolis = jsnew GM.latLng(Js.number_of_float 39.79, Js.number_of_float (-86.14), Js.undefined) in
+  let chicago = new%js GM.latLng (Js.number_of_float 41.85) (Js.number_of_float (-87.65)) Js.undefined in
+  let indianapolis = new%js GM.latLng (Js.number_of_float 39.79) (Js.number_of_float (-86.14)) Js.undefined in
 
   let options = GM.emptyMapOptions() in
-  let () = options##center <- chicago in
-  let () = options##scrollwheel <- Js._false in
-  let () = options##zoom <- Js.number_of_float 7. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := chicago in
+  let () = options##.scrollwheel := Js._false in
+  let () = options##.zoom := Js.number_of_float 7. in
+  let map = new%js GM.map element options in
 
   let options = GM.emptyDirectionsRendererOptions() in
-  let () = options##map <- map in
-  let directions_display = jsnew GM.directionsRenderer(Js.def options) in
+  let () = options##.map := map in
+  let directions_display = new%js GM.directionsRenderer(Js.def options) in
   let request = GM.emptyDirectionsRequest() in
   let place_indianapolis = GM.emptyPlace() in
-  let () = place_indianapolis##location <- indianapolis in
-  let () = request##destination <- place_indianapolis in
+  let () = place_indianapolis##.location := indianapolis in
+  let () = request##.destination := place_indianapolis in
   let place_chicago = GM.emptyPlace() in
-  let () = place_chicago##location <- chicago in
-  let () = request##origin <- place_chicago in
-  let () = request##travelMode <- GM.travelMode##_DRIVING in
-  let directions_service = jsnew GM.directionsService () in
+  let () = place_chicago##.location := chicago in
+  let () = request##.origin := place_chicago in
+  let () = request##.travelMode := GM.travelMode##._DRIVING in
+  let directions_service = new%js GM.directionsService in
   let f response status =
-    if status = GM.directionsStatus##_OK then
-      directions_display##setDirections(response)
+    if status = GM.directionsStatus##._OK then
+      directions_display##setDirections response
   in
-  directions_service##route(request, Js.wrap_callback f)
+  directions_service##route request (Js.wrap_callback f)
 {% endhighlight %}
 				</td>
 			</tr>
@@ -158,19 +158,19 @@ let demo doc =
     Js.Opt.get (doc##getElementById(Js.string "demo_markers"))
       (fun () -> assert false)
   in
-  let lat_lng = jsnew GM.latLng(Js.number_of_float (-25.363), Js.number_of_float 131.044, Js.undefined) in
+  let lat_lng = new%js GM.latLng (Js.number_of_float (-25.363)) (Js.number_of_float 131.044) Js.undefined in
 
   let options = GM.emptyMapOptions() in
-  let () = options##center <- lat_lng in
-  let () = options##scrollwheel <- Js._false in
-  let () = options##zoom <- Js.number_of_float 4. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := lat_lng in
+  let () = options##.scrollwheel := Js._false in
+  let () = options##.zoom := Js.number_of_float 4. in
+  let map = new%js GM.map element options in
 
   let options = GM.emptyMarkerOptions() in
-  let () = options##map <- map in
-  let () = options##position <- lat_lng in
-  let () = options##title <- Js.string "Hello World!" in
-  jsnew GM.marker(Js.def options)
+  let () = options##.map := map in
+  let () = options##.position := lat_lng in
+  let () = options##.title := Js.string "Hello World!" in
+  new%js GM.marker (Js.def options)
 {% endhighlight %}
 				</td>
 			</tr>
@@ -185,12 +185,12 @@ let demo doc =
     Js.Opt.get (doc##getElementById(Js.string "demo_info_window"))
       (fun () -> assert false)
   in
-  let uluru = jsnew GM.latLng(Js.number_of_float (-25.363), Js.number_of_float 131.044, Js.undefined) in
+  let uluru = new%js GM.latLng (Js.number_of_float (-25.363)) (Js.number_of_float 131.044) Js.undefined in
 
   let options = GM.emptyMapOptions() in
-  let () = options##center <- uluru in
-  let () = options##zoom <- Js.number_of_float 4. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := uluru in
+  let () = options##.zoom := Js.number_of_float 4. in
+  let map = new%js GM.map element options in
 
   let content = "<div id=\"content\"> \
                  <div id=\"siteNotice\"></div> \
@@ -214,18 +214,18 @@ let demo doc =
   in
 
   let options = GM.emptyInfoWindowOptions() in
-  let () = options##content <- Js.string content in
-  let info_window = jsnew GM.infoWindow(Js.def options) in
+  let () = options##.content := Js.string content in
+  let info_window = new%js GM.infoWindow (Js.def options) in
 
   let options = GM.emptyMarkerOptions() in
-  let () = options##map <- map in
-  let () = options##position <- uluru in
-  let () = options##title <- Js.string "Uluru (Ayers Rock)" in
-  let marker = jsnew GM.marker(Js.def options) in
+  let () = options##.map := map in
+  let () = options##.position := uluru in
+  let () = options##.title := Js.string "Uluru (Ayers Rock)" in
+  let marker = new%js GM.marker (Js.def options) in
   let marker' = (marker :> GM._MVCObject Js.t) in
 
-  let f () = info_window##_open(Js.def map, Js.def marker') in
-  marker##addListener(Js.string "click", Js.wrap_callback f)
+  let f () = info_window##_open (Js.def map) (Js.def marker') in
+  marker##addListener (Js.string "click") (Js.wrap_callback f)
 {% endhighlight %}
 				</td>
 			</tr>
@@ -240,42 +240,42 @@ let demo doc =
     Js.Opt.get (doc##getElementById(Js.string "demo_rectangle_event"))
       (fun () -> assert false)
   in
-  let center = jsnew GM.latLng(Js.number_of_float 44.5452, Js.number_of_float (-78.5389), Js.undefined) in
+  let center = new%js GM.latLng (Js.number_of_float 44.5452) (Js.number_of_float (-78.5389)) Js.undefined in
   let options = GM.emptyMapOptions() in
-  let () = options##center <- center in
-  let () = options##zoom <- Js.number_of_float 9. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := center in
+  let () = options##.zoom := Js.number_of_float 9. in
+  let map = new%js GM.map element options in
 
-  let boundSW = jsnew GM.latLng(Js.number_of_float 44.490, Js.number_of_float (-78.649), Js.undefined) in
-  let boundNE = jsnew GM.latLng(Js.number_of_float 44.599, Js.number_of_float (-78.443), Js.undefined) in
-  let bounds = jsnew GM.latLngBounds(Js.def boundSW, Js.def boundNE) in
+  let boundSW = new%js GM.latLng (Js.number_of_float 44.490) (Js.number_of_float (-78.649)) Js.undefined in
+  let boundNE = new%js GM.latLng (Js.number_of_float 44.599) (Js.number_of_float (-78.443)) Js.undefined in
+  let bounds = new%js GM.latLngBounds (Js.def boundSW) (Js.def boundNE) in
   let options = GM.emptyRectangleOptions() in
-  let () = options##bounds <- bounds in
-  let () = options##editable <- Js._true in
-  let () = options##draggable <- Js._true in
-  let rectangle = jsnew GM.rectangle(Js.def options) in
-  let () = rectangle##setMap(map) in
+  let () = options##.bounds := bounds in
+  let () = options##.editable := Js._true in
+  let () = options##.draggable := Js._true in
+  let rectangle = new%js GM.rectangle (Js.def options) in
+  let () = rectangle##setMap map in
 
   let options = GM.emptyInfoWindowOptions() in
-  let info_window = jsnew GM.infoWindow(Js.def options) in
+  let info_window = new%js GM.infoWindow (Js.def options) in
 
   let show_new_rect(_) =
-    let ne = rectangle##getBounds()##getNorthEast() in
-    let sw = rectangle##getBounds()##getSouthWest() in
-    let ne_lat = ne##lat()##toString() in
-    let ne_lng = ne##lng()##toString() in
-    let sw_lat = sw##lat()##toString() in
-    let sw_lng = sw##lng()##toString() in
+    let ne = rectangle##getBounds##getNorthEast in
+    let sw = rectangle##getBounds##getSouthWest in
+    let ne_lat = ne##lat##toString in
+    let ne_lng = ne##lng##toString in
+    let sw_lat = sw##lat##toString in
+    let sw_lng = sw##lng##toString in
     let contentString = "<b>Rectangle moved.</b><br>"
                         ^ "New north-east corner: " ^ (Js.to_string ne_lat) ^ ", " ^ (Js.to_string ne_lng) ^ "<br>"
                         ^ "New south-west corner: " ^ (Js.to_string sw_lat) ^ ", " ^ (Js.to_string sw_lng)
     in
-    let () = info_window##setContent(Js.string contentString) in
-    let () = info_window##setPosition(ne) in
-    info_window##_open(Js.def map, Js.def(jsnew GM.mvcObject()))
+    let () = info_window##setContent (Js.string contentString) in
+    let () = info_window##setPosition ne in
+    info_window##_open (Js.def map) (Js.def(new%js GM.mvcObject))
   in
 
-  rectangle##addListener(Js.string "bounds_changed", Js.wrap_callback show_new_rect)
+  rectangle##addListener (Js.string "bounds_changed") (Js.wrap_callback show_new_rect)
 
 {% endhighlight %}
 				</td>
@@ -292,68 +292,68 @@ let demo doc =
       (fun () -> assert false)
   in
   let script = Dom_html.createScript doc in
-  let () = script##src <- Js.string "https://storage.googleapis.com/maps-devrel/quakes.geo.json" in
-  let head = doc##getElementsByTagName(Js.string "head") in
-  let head = head##item(0) in
+  let () = script##.src := Js.string "https://storage.googleapis.com/maps-devrel/quakes.geo.json" in
+  let head = doc##getElementsByTagName (Js.string "head") in
+  let head = head##item 0 in
   let head = Js.Opt.get head (fun _ -> assert false) in
   let () = Dom.appendChild head script in
 
-  let mapStyle = jsnew Js.array_empty () in
+  let mapStyle = new%js Js.array_empty in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "all" in
-  let () = style##elementType <- Js.string "all" in
+  let () = style##.featureType := Js.string "all" in
+  let () = style##.elementType := Js.string "all" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##visibility <- Js.string "off" in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.visibility := Js.string "off" in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set mapStyle 0 style in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "landscape" in
+  let () = style##.featureType := Js.string "landscape" in
   (* "elementType" is simply "geometry" in demo *)
-  let () = style##elementType <- Js.string "geometry.stroke" in
+  let () = style##.elementType := Js.string "geometry.stroke" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##visibility <- Js.string "on" in
-  let () = styler##color <- Js.string "#fcfcfc" in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.visibility := Js.string "on" in
+  let () = styler##.color := Js.string "#fcfcfc" in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set mapStyle 1 style in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "water" in
-  let () = style##elementType <- Js.string "labels" in
+  let () = style##.featureType := Js.string "water" in
+  let () = style##.elementType := Js.string "labels" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##visibility <- Js.string "off" in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.visibility := Js.string "off" in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set mapStyle 2 style in
 
   let style = GM.emptyMapTypeStyle () in
-  let () = style##featureType <- Js.string "water" in
-  let () = style##elementType <- Js.string "geometry" in
+  let () = style##.featureType := Js.string "water" in
+  let () = style##.elementType := Js.string "geometry" in
   let styler = GM.emptyMapTypeStyler () in
-  let () = styler##visibility <- Js.string "on" in
-  let () = styler##hue <- Js.string "#5f94ff" in
-  let () = styler##lightness <- Js.number_of_float 60. in
-  let t = jsnew Js.array_empty () in
+  let () = styler##.visibility := Js.string "on" in
+  let () = styler##.hue := Js.string "#5f94ff" in
+  let () = styler##.lightness := Js.number_of_float 60. in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 styler in
-  let () = style##stylers <- t in
+  let () = style##.stylers := t in
   let () = Js.array_set mapStyle 3 style in
 
-  let center = jsnew GM.latLng(Js.number_of_float 20., Js.number_of_float (-160.), Js.undefined) in
+  let center = new%js GM.latLng (Js.number_of_float 20.) (Js.number_of_float (-160.)) Js.undefined in
   let options = GM.emptyMapOptions() in
-  let () = options##center <- center in
-  let () = options##zoom <- Js.number_of_float 2. in
-  let () = options##styles <- mapStyle in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := center in
+  let () = options##.zoom := Js.number_of_float 2. in
+  let () = options##.styles := mapStyle in
+  let map = new%js GM.map element options in
 
-  let data = jsnew GM.data(Js.undefined) in
+  let data = new%js GM.data Js.undefined in
   let styleFeature (feature:GM._Data_Feature Js.t) =
-    let mag = Js.Optdef.get feature##getProperty(Js.string "mag")
+    let mag = Js.Optdef.get (feature##getProperty (Js.string "mag"))
         (fun () -> 0.)
     in
     let interpolateHsl lowHsl highHsl fraction =
@@ -373,30 +373,30 @@ let demo doc =
     let () = high.(2) <- 54. in
     let minMag = 1. in
     let maxMag = 6. in
-    let fraction = (Js.math##min(mag, maxMag) -. minMag)
+    let fraction = ((Js.math##min mag maxMag) -. minMag)
                    /. (maxMag -. minMag)
     in
     let color = interpolateHsl low high fraction in
 
     let symbol = GM.emptySymbol() in
-    let () = symbol##path <- GM.symbolPath##_CIRCLE in
-    let () = symbol##strokeWeight <- Js.number_of_float 0.5 in
-    let () = symbol##strokeColor <- Js.string "#fff" in
-    let () = symbol##fillColor <- Js.string color in
-    let () = symbol##fillOpacity <- Js.number_of_float (2. /. mag) in
-    let () = symbol##scale <- Js.number_of_float Js.math##pow(mag, 2.) in
+    let () = symbol##.path := GM.symbolPath##._CIRCLE in
+    let () = symbol##.strokeWeight := Js.number_of_float 0.5 in
+    let () = symbol##.strokeColor := Js.string "#fff" in
+    let () = symbol##.fillColor := Js.string color in
+    let () = symbol##.fillOpacity := Js.number_of_float (2. /. mag) in
+    let () = symbol##.scale := Js.number_of_float (Js.math##pow mag 2.) in
 
     let dataStyleOptions = GM.emptyDataStyleOptions() in
-    let () = dataStyleOptions##icon <- symbol in
-    let () = dataStyleOptions##zIndex <- Js.number_of_float Js.math##floor(mag) in
+    let () = dataStyleOptions##.icon := symbol in
+    let () = dataStyleOptions##.zIndex := Js.number_of_float (Js.math##floor mag) in
     dataStyleOptions
   in
   let () = data##setStyle(Js.wrap_callback styleFeature) in
   (* no setMap(map) in demo (?) *)
-  let () = data##setMap(map) in
-  let () = map##data <- data in
-  let () = Js.Unsafe.global##eqfeed_callback <- Js.wrap_callback 
-        (fun v -> map##data##addGeoJson(v, Js.undefined))
+  let () = data##setMap map in
+  let () = map##.data := data in
+  let () = Js.Unsafe.global##.eqfeed_callback := Js.wrap_callback
+        (fun v -> map##.data##addGeoJson v Js.undefined)
   in
   ()
 
@@ -415,18 +415,18 @@ let demo doc =
       (fun () -> assert false)
   in
 
-  let center = jsnew GM.latLng(Js.number_of_float 49.496675, Js.number_of_float (-102.65625), Js.undefined) in
+  let center = new%js GM.latLng (Js.number_of_float 49.496675) (Js.number_of_float (-102.65625)) Js.undefined in
   let options = GM.emptyMapOptions() in
-  let () = options##center <- center in
-  let () = options##zoom <- Js.number_of_float 4. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := center in
+  let () = options##.zoom := Js.number_of_float 4. in
+  let map = new%js GM.map element options in
 
   let options = GM.emptyKmlLayerOptions() in
   let () =
-    options##url <- Js.string "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss"
+    options##.url := Js.string "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss"
   in
-  let georssLayer = jsnew GM.kmlLayer(Js.def options) in
-  let () = georssLayer##setMap(map) in
+  let georssLayer = new%js GM.kmlLayer (Js.def options) in
+  let () = georssLayer##setMap map in
   ()
 {% endhighlight %}
 				</td>
@@ -448,13 +448,13 @@ let demo doc =
     Js.Opt.get (doc##getElementById(Js.string "demo_geocoding"))
       (fun () -> assert false)
   in
-  let center = jsnew GM.latLng(Js.number_of_float (-34.397), Js.number_of_float 150.644, Js.undefined) in
+  let center = new%js GM.latLng (Js.number_of_float (-34.397)) (Js.number_of_float 150.644) Js.undefined in
   let options = GM.emptyMapOptions() in
-  let () = options##center <- center in
-  let () = options##zoom <- Js.number_of_float 8. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := center in
+  let () = options##.zoom := Js.number_of_float 8. in
+  let map = new%js GM.map element options in
 
-  let geocoder = jsnew GM.geocoder() in
+  let geocoder = new%js GM.geocoder in
 
   let geocodeAddress geocoder map =
     let element =
@@ -467,27 +467,27 @@ let demo doc =
       | Dom_html.Input v -> v
       | _ -> assert false
     in
-    let address = element##value in
+    let address = element##.value in
     let geoReq = GM.emptyGeocoderRequest() in
-    let () = geoReq##address <- address in
+    let () = geoReq##.address := address in
     let f results status =
-      if status = GM.geocoderStatus##_OK then (
+      if status = GM.geocoderStatus##._OK then (
         let r =
           Js.Optdef.get (Js.array_get results 0)
             (fun () -> assert false)
         in
-        let () = map##setCenter(r##geometry##location) in
+        let () = map##setCenter r##.geometry##.location in
         let options = GM.emptyMarkerOptions() in
-        let () = options##map <- map in
-        let () = options##position <- r##geometry##location in
-        let _ = jsnew GM.marker(Js.def options) in
+        let () = options##.map := map in
+        let () = options##.position := r##.geometry##.location in
+        let _ = new%js GM.marker (Js.def options) in
         ()
       ) else (
         Dom_html.window##alert(Js.string "Geocoder error!") ;
-        Firebug.console##debug(status)
+        Firebug.console##debug status
       )
     in
-    geocoder##geocode(geoReq, Js.wrap_callback f)
+    geocoder##geocode geoReq (Js.wrap_callback f)
   in
   let element =
     Js.Opt.get (doc##getElementById(Js.string "demo_geocoding_submit"))
@@ -513,30 +513,30 @@ let demo doc =
       (fun () -> assert false)
   in
 
-  let pyrmont = jsnew GM.latLng(Js.number_of_float (-33.867), Js.number_of_float 151.195, Js.undefined) in
+  let pyrmont = new%js GM.latLng (Js.number_of_float (-33.867)) (Js.number_of_float 151.195) Js.undefined in
   let options = GM.emptyMapOptions() in
-  let () = options##center <- pyrmont in
-  let () = options##zoom <- Js.number_of_float 15. in
-  let map = jsnew GM.map(element, options) in
-  let info_window = jsnew GM.infoWindow(Js.undefined) in
+  let () = options##.center := pyrmont in
+  let () = options##.zoom := Js.number_of_float 15. in
+  let map = new%js GM.map element options in
+  let info_window = new%js GM.infoWindow Js.undefined in
 
   let create_marker place =
-    let place_loc = place##geometry##location in
+    let place_loc = place##.geometry##.location in
     let options = GM.emptyMarkerOptions() in
-    let () = options##map <- map in
-    let () = options##position <- place_loc in
-    let marker = jsnew GM.marker(Js.def options) in
+    let () = options##.map := map in
+    let () = options##.position := place_loc in
+    let marker = new%js GM.marker (Js.def options) in
     let marker' = (marker :> GM._MVCObject Js.t) in
     let f () =
-      let () = info_window##setContent(place##name) in
-      info_window##_open(Js.def map, Js.def marker')
+      let () = info_window##setContent place##.name in
+      info_window##_open (Js.def map) (Js.def marker')
     in
-    marker##addListener(Js.string "click", Js.wrap_callback f)
+    marker##addListener (Js.string "click") (Js.wrap_callback f)
   in
 
   let callback results status _ =
-    if status = GM.placesServiceStatus##_OK then (
-      let l = results##length in
+    if status = GM.placesServiceStatus##._OK then (
+      let l = results##.length in
       for i = 0 to (l - 1) do
         let e = Js.array_get results i in
         let e = Js.Optdef.get e (fun () -> assert false) in
@@ -547,13 +547,13 @@ let demo doc =
   in
 
   let placeSearchRequest = GM.emptyPlaceSearchRequest() in
-  let () = placeSearchRequest##location <- pyrmont in
-  let () = placeSearchRequest##radius <- Js.number_of_float 500. in
-  let t = jsnew Js.array_empty () in
+  let () = placeSearchRequest##.location := pyrmont in
+  let () = placeSearchRequest##.radius := Js.number_of_float 500. in
+  let t = new%js Js.array_empty in
   let () = Js.array_set t 0 (Js.string "store") in
-  let () = placeSearchRequest##types <- t in
-  let service = jsnew GM.placesService(map) in
-  service##nearbySearch(placeSearchRequest, Js.wrap_callback callback)
+  let () = placeSearchRequest##.types := t in
+  let service = new%js GM.placesService map in
+  service##nearbySearch placeSearchRequest (Js.wrap_callback callback)
 
 {% endhighlight %}
 				</td>
@@ -570,11 +570,11 @@ let demo doc =
       (fun () -> assert false)
   in
 
-  let center = jsnew GM.latLng(Js.number_of_float (-33.9), Js.number_of_float 151.2, Js.undefined) in
+  let center = new%js GM.latLng (Js.number_of_float (-33.9)) (Js.number_of_float 151.2) Js.undefined in
   let options = GM.emptyMapOptions() in
-  let () = options##center <- center in
-  let () = options##zoom <- Js.number_of_float 10. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := center in
+  let () = options##.zoom := Js.number_of_float 10. in
+  let map = new%js GM.map element options in
 
   let beaches = [
     ("Bondi Beach", (-33.890542), 151.274856, 4.) ;
@@ -586,31 +586,31 @@ let demo doc =
 
   let set_markers map =
     let image = GM.emptyIcon() in
-    let size = jsnew GM.size(Js.number_of_float 20., Js.number_of_float 32., Js.undefined, Js.undefined) in
-    let origin = jsnew GM.point(Js.number_of_float 0., Js.number_of_float 0.) in
-    let anchor = jsnew GM.point(Js.number_of_float 0., Js.number_of_float 32.) in
-    let () = image##url <- Js.string "images/beachflag.png" in
-    let () = image##size <- size in
-    let () = image##origin <- origin in
-    let () = image##anchor <- anchor in
+    let size = new%js GM.size (Js.number_of_float 20.) (Js.number_of_float 32.) Js.undefined Js.undefined in
+    let origin = new%js GM.point (Js.number_of_float 0.) (Js.number_of_float 0.) in
+    let anchor = new%js GM.point (Js.number_of_float 0.) (Js.number_of_float 32.) in
+    let () = image##.url := Js.string "images/beachflag.png" in
+    let () = image##.size := size in
+    let () = image##.origin := origin in
+    let () = image##.anchor := anchor in
     let shape = GM.emptyMarkerShape() in
-    let t = jsnew Js.array_empty () in
+    let t = new%js Js.array_empty in
     let () =
       List.iteri (fun i e -> Js.array_set t i (Js.number_of_float e))
         [1.; 1.; 1.; 20.; 18.; 20.; 18.; 1.]
     in
-    let () = shape##coords <- t in
-    let () = shape##_type <- Js.string "poly" in
+    let () = shape##.coords := t in
+    let () = shape##._type := Js.string "poly" in
     List.iter (fun (name, lat, lng, z) ->
         let options = GM.emptyMarkerOptions() in
-        let lat_lng = jsnew GM.latLng(Js.number_of_float lat, Js.number_of_float lng, Js.undefined) in
-        let () = options##position <- lat_lng in
-        let () = options##map <- map in
-        let () = options##icon <- image in
-        let () = options##shape <- shape in
-        let () = options##title <- Js.string name in
-        let () = options##zIndex <- Js.number_of_float z in
-        let _ = jsnew GM.marker(Js.def options) in
+        let lat_lng = new%js GM.latLng (Js.number_of_float lat) (Js.number_of_float lng) Js.undefined in
+        let () = options##.position := lat_lng in
+        let () = options##.map := map in
+        let () = options##.icon := image in
+        let () = options##.shape := shape in
+        let () = options##.title := Js.string name in
+        let () = options##.zIndex := Js.number_of_float z in
+        let _ = new%js GM.marker (Js.def options) in
         ()
       ) beaches
   in
@@ -630,41 +630,41 @@ let demo doc =
     Js.Opt.get (doc##getElementById(Js.string "demo_map_geolocation"))
       (fun () -> assert false)
   in
-  let center = jsnew GM.latLng(Js.number_of_float (-34.397), Js.number_of_float 150.644, Js.undefined) in
+  let center = new%js GM.latLng (Js.number_of_float (-34.397)) (Js.number_of_float 150.644) Js.undefined in
 
   let options = GM.emptyMapOptions() in
-  let () = options##center <- center in
-  let () = options##zoom <- Js.number_of_float 6. in
-  let map = jsnew GM.map(element, options) in
+  let () = options##.center := center in
+  let () = options##.zoom := Js.number_of_float 6. in
+  let map = new%js GM.map element options in
 
   let options = GM.emptyInfoWindowOptions() in
-  let info_window = jsnew GM.infoWindow(Js.def options) in
+  let info_window = new%js GM.infoWindow (Js.def options) in
 
   if (Geolocation.is_supported()) then (
     let geo = Geolocation.geolocation in
     let options = Geolocation.empty_position_options() in
-    let () = options##enableHighAccuracy <- true in
+    let () = options##.enableHighAccuracy := true in
     let f_success pos =
-      let coords = pos##coords in
-      let latitude = coords##latitude in
-      let longitude = coords##longitude in
-      let latLng = jsnew GM.latLng(Js.number_of_float latitude, Js.number_of_float longitude, Js.undefined) in
-      map##setCenter(latLng) ;
-      info_window##setPosition(map##getCenter()) ;
-      info_window##setContent(Js.string "Location found.") ;
-      info_window##_open(Js.def map, Js.undefined) ;
+      let coords = pos##.coords in
+      let latitude = coords##.latitude in
+      let longitude = coords##.longitude in
+      let latLng = new%js GM.latLng (Js.number_of_float latitude) (Js.number_of_float longitude) Js.undefined in
+      map##setCenter latLng ;
+      info_window##setPosition map##getCenter ;
+      info_window##setContent (Js.string "Location found.") ;
+      info_window##_open (Js.def map) (Js.undefined) ;
     in
     let f_error err =
-      let msg = err##message in
-      info_window##setPosition(map##getCenter()) ;
-      info_window##setContent(msg) ;
-      info_window##_open(Js.def map, Js.undefined) ;
+      let msg = err##.message in
+      info_window##setPosition map##getCenter ;
+      info_window##setContent msg ;
+      info_window##_open (Js.def map) (Js.undefined) ;
     in
-    geo##getCurrentPosition(Js.wrap_callback f_success, Js.wrap_callback f_error, options) ;
+    geo##getCurrentPosition (Js.wrap_callback f_success) (Js.wrap_callback f_error) options ;
   ) else (
-    info_window##setPosition(map##getCenter()) ;
-    info_window##setContent(Js.string "Error: Your browser doesn\'t support geolocation.") ;
-    info_window##_open(Js.def map, Js.undefined) ;
+    info_window##setPosition map##getCenter ;
+    info_window##setContent (Js.string "Error: Your browser doesn\'t support geolocation.") ;
+    info_window##_open (Js.def map) Js.undefined ;
   )
 
 {% endhighlight %}
